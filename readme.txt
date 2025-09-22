@@ -41,10 +41,20 @@ If you want to install another language, please choose its cell in the Developme
 Some things are to be done:
 
 * add a Gutenberg equivalent of the editor plugin
-* filter user input better
+* ~~filter user input better~~ ✅ **COMPLETED in v16.0.0** - Enterprise-level input sanitization implemented
 * rework multi-part forms to be independent from PHP sessions
 * refactoring with object oriented approach
 * long term: unit tests and continuous integration
+
+**Recent Progress (v16.0.0):**
+* ✅ Enhanced security with context-aware input sanitization for all field types
+* ✅ Comprehensive file upload security checks and validation
+* ✅ Multi-layer CSRF protection with session validation
+* ✅ Rate limiting and brute-force protection mechanisms
+* ✅ Security event logging and monitoring capabilities
+* ✅ Modern mobile-optimized admin interface
+* ✅ Performance optimizations with conditional asset loading
+* ✅ Advanced caching strategies for improved performance
 
 
 == Installation ==
