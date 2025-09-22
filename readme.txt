@@ -40,13 +40,14 @@ If you want to install another language, please choose its cell in the Developme
 
 Some things are to be done:
 
-* add a Gutenberg equivalent of the editor plugin
+* ~~add a Gutenberg equivalent of the editor plugin~~ ✅ **COMPLETED in v16.0.0** - Full Gutenberg block integration implemented
 * ~~filter user input better~~ ✅ **COMPLETED in v16.0.0** - Enterprise-level input sanitization implemented
 * rework multi-part forms to be independent from PHP sessions
 * refactoring with object oriented approach
 * long term: unit tests and continuous integration
 
 **Recent Progress (v16.0.0):**
+* ✅ Full Gutenberg block integration with modern block editor support
 * ✅ Enhanced security with context-aware input sanitization for all field types
 * ✅ Comprehensive file upload security checks and validation
 * ✅ Multi-layer CSRF protection with session validation
