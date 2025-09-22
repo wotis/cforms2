@@ -75,12 +75,11 @@ class FormSettings
                 return $dt->getTimestamp();
             }
         } catch (\Exception $e) {
-            // Fallback: Parse als lokale Zeit und konvertiere zu UTC
+            // Fallback: Parse als lokale Zeit
             $time = str_replace('/', '.', $formatted_date);
             $timestamp = strtotime($time);
             if ($timestamp !== false) {
-                // Korrigiere für WordPress-Zeitzone
-                return $timestamp - (get_option('gmt_offset') * 3600);
+                return $timestamp;
             }
         }
         
