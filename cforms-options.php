@@ -616,11 +616,15 @@ elseif (Cforms2\FormSettings::form($no)->getDontClear())
                         <td class="obL"><strong><?php _e('Start Date', 'cforms2'); ?></strong></td>
                             <?php $start_date = Cforms2\FormSettings::form($no)->getStartDateTime(); ?>
                         <td class="obR">
-                            <input type="date" id="cforms_startdate" name="cforms_startdate" value="<?php if ($start_date) echo date('Y-m-d', $start_date); ?>"/>
-                            <input type="time" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php if ($start_date) echo date('h:i', $start_date); ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
+                        <?php
+    $tz = new \DateTimeZone(get_option('timezone_string'));
+    $dt_start = $start_date ? (new \DateTime('@' . $start_date))->setTimezone($tz) : null;
+?>
+<input type="date" id="cforms_startdate" name="cforms_startdate" value="<?php echo $dt_start ? $dt_start->format('Y-m-d') : ''; ?>"/>
+<input type="time" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $dt_start ? $dt_start->format('H:i') : ''; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
                             <label for="cforms_startdate"><?php
 if ($start_date) {
-    if ($start_date > time()) {
+    if ($start_date > current_time('timestamp')) {
         echo __('The form will be available in ', 'cforms2') . human_time_diff($start_date);
     } else {
         echo __('The form is available now.', 'cforms2');
@@ -635,11 +639,16 @@ if ($start_date) {
                         <td class="obL"><strong><?php _e('End Date', 'cforms2'); ?></strong></td>
                             <?php $end_date = Cforms2\FormSettings::form($no)->getEndDateTime(); ?>
                         <td class="obR">
-                            <input type="date" id="cforms_enddate" name="cforms_enddate" value="<?php if ($end_date) echo date('Y-m-d', $end_date); ?>"/>
-                            <input type="time" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php if ($end_date) echo date('h:i', $end_date); ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
+                        <?php
+    $tz = new \DateTimeZone(get_option('timezone_string'));
+    $dt = $end_date ? (new \DateTime('@' . $end_date))->setTimezone($tz) : null;
+?>
+<input type="date" id="cforms_enddate" name="cforms_enddate" value="<?php echo $dt ? $dt->format('Y-m-d') : ''; ?>"/>
+<input type="time" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $dt ? $dt->format('H:i') : ''; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
+
                             <label for="cforms_startdate"><?php
                                 if ($start_date && $end_date) {
-                                    if ($end_date > time()) {
+                                    if ($end_date > current_time('timestamp')) {
                                         echo __('The form will be available for another ', 'cforms2') . human_time_diff($end_date);
                                     } else {
                                         echo __('The form is not available anymore.', 'cforms2');
