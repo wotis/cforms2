@@ -67,20 +67,13 @@ class FormSettings
             return 0;
         }
         
-        try {
-            // WordPress-Zeitzone verwenden
-            $timezone = new \DateTimeZone(get_option('timezone_string') ?: 'UTC');
-            $dt = \DateTime::createFromFormat('d/m/Y H:i', $formatted_date, $timezone);
-            if ($dt !== false) {
-                return $dt->getTimestamp();
-            }
-        } catch (\Exception $e) {
-            // Fallback: Parse als lokale Zeit
-            $time = str_replace('/', '.', $formatted_date);
-            $timestamp = strtotime($time);
-            if ($timestamp !== false) {
-                return $timestamp;
-            }
+        // Einfache Lösung: Verwende strtotime direkt mit lokaler Zeit
+        $time = str_replace('/', '.', $formatted_date);
+        $timestamp = strtotime($time);
+        
+        if ($timestamp !== false) {
+            // Gib lokalen Timestamp zurück - wird mit current_time('timestamp') verglichen
+            return $timestamp;
         }
         
         return 0;

@@ -621,8 +621,8 @@ elseif (Cforms2\FormSettings::form($no)->getDontClear())
                             <?php $start_date = Cforms2\FormSettings::form($no)->getStartDateTime(); ?>
                         <td class="obR">
                         <?php
-    $tz = new \DateTimeZone(get_option('timezone_string'));
-    $dt_start = $start_date ? (new \DateTime('@' . $start_date))->setTimezone($tz) : null;
+    // Da wir jetzt lokale Timestamps speichern, direkt verwenden ohne Timezone-Konvertierung
+    $dt_start = $start_date ? new \DateTime('@' . $start_date) : null;
 ?>
 <input type="date" id="cforms_startdate" name="cforms_startdate" value="<?php echo $dt_start ? $dt_start->format('Y-m-d') : ''; ?>"/>
 <input type="time" id="cforms_starttime" name="cforms_starttime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $dt_start ? $dt_start->format('H:i') : ''; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
@@ -644,8 +644,8 @@ if ($start_date) {
                             <?php $end_date = Cforms2\FormSettings::form($no)->getEndDateTime(); ?>
                         <td class="obR">
                         <?php
-    $tz = new \DateTimeZone(get_option('timezone_string'));
-    $dt = $end_date ? (new \DateTime('@' . $end_date))->setTimezone($tz) : null;
+    // Da wir jetzt lokale Timestamps speichern, direkt verwenden ohne Timezone-Konvertierung
+    $dt = $end_date ? new \DateTime('@' . $end_date) : null;
 ?>
 <input type="date" id="cforms_enddate" name="cforms_enddate" value="<?php echo $dt ? $dt->format('Y-m-d') : ''; ?>"/>
 <input type="time" id="cforms_endtime" name="cforms_endtime" placeholder="<?php _e('HH:MM', 'cforms2'); ?>" value="<?php echo $dt ? $dt->format('H:i') : ''; ?>" title="<?php _e('Time entry.', 'cforms2') ?>"/>
