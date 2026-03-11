@@ -107,7 +107,7 @@ $starttime = cforms2_get_from_request('cforms_starttime');
 $enddate = cforms2_get_from_request('cforms_enddate');
 $endtime = cforms2_get_from_request('cforms_endtime');
 
-$timezone = new \DateTimeZone(get_option('timezone_string'));
+$timezone = new \DateTimeZone(wp_timezone_string());
 
 // Startdatum korrekt formatieren
 if (!empty($startdate)) {

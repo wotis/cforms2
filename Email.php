@@ -219,6 +219,10 @@ class Email {
      */
     public function phpmailer_init($phpmailer) {
         $phpmailer->AltBody = $this->mail_body($this->body_alt);
+        // Workaround for wp_mail setting PHPMailer's CharSet to an empty string on multipart emails
+        if ($phpmailer->CharSet === '') {
+            $phpmailer->CharSet = get_bloginfo('charset');
+        }
 
     }
 

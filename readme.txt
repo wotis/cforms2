@@ -3,7 +3,7 @@ Contributors: bgermann, cbacchini, codifex, nb000, wdfee, passoniate
 Donate link: https://www.betterplace.org/projects/11633/donations/new
 Tags: form, contact, sidebar, multi step, fork
 Tested up to: 6.8
-Stable tag: 16.0.0
+Stable tag: 16.0.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0
 
@@ -40,13 +40,9 @@ If you want to install another language, please choose its cell in the Developme
 
 Some things are to be done:
 
-* ✅ add a Gutenberg equivalent of the editor plugin (completed in v16.0.0)
-* ✅ enhanced security and input filtering (completed in v16.0.0)
 * rework multi-part forms to be independent from PHP sessions
 * refactoring with object oriented approach
 * long term: unit tests and continuous integration
-* modernize CSS and responsive design (partially completed in v16.0.0)
-* improve mobile admin interface (completed in v16.0.0)
 
 
 == Installation ==
@@ -115,26 +111,30 @@ The tracking database feature and its view are removed with cformsII 15.0+. Your
 
 == Changelog ==
 
+= 16.0.2 =
+
+* bugfix:   Fixed empty charset on multipart emails (PHPMailer workaround)
+* bugfix:   Fieldtype registration moved to init hook for PHP 8.4 compatibility
+* enhanced: Use wp_timezone_string() for more robust timezone handling
+* enhanced: Integer cast for text padding calculation to avoid float values
+
+= 16.0.1 =
+
+* bugfix:   Fixed JSON response errors during Gutenberg block editor operations
+* bugfix:   Resolved block editor save conflicts that prevented draft saving
+* bugfix:   Fixed frontend rendering issues with Gutenberg blocks
+* enhanced: Improved stability and performance of Gutenberg block integration
+* other:    Clean, production-ready code without debug outputs
+
 = 16.0.0 =
 
-* feature:  MAJOR RELEASE - Complete timezone handling overhaul
-* feature:  Fixed timezone shift problem in form start/end dates
-* feature:  WordPress timezone integration for correct local time display
-* feature:  Consistent DateTime handling across all form operations
-* feature:  Modern responsive admin interface with mobile optimization
-* feature:  Complete Gutenberg block editor integration
-* feature:  Enhanced security library (lib_security.php)
-* feature:  Improved internationalization support (lib_i18n.php)
-* feature:  Extended block functionality (lib_blocks.php)
-* feature:  Mobile-responsive CSS themes (mobile-admin.css, mobile-responsive.css)
-* feature:  Modern admin styling (admin-modern.css)
-* enhanced: Optimized FormSettings.php with extended capabilities
-* enhanced: Improved cforms.php core functionality
-* enhanced: Enhanced lib_functions.php with additional features
-* enhanced: Overhauled lib_options_sub.php with proper timezone handling
-* other:    Brings cforms2 to modern WordPress development standards
-* other:    Resolves long-standing timezone issues reported by users
-* other:    Full compatibility with current WordPress versions
+* enhanced: Fixed critical timezone issue where form end dates would shift by timezone offset
+* enhanced: Improved date/time handling to use WordPress timezone settings correctly
+* enhanced: Forms now respect WordPress timezone settings for start/end dates
+* feature:  Added modern Gutenberg block editor integration for seamless form insertion
+* feature:  New "cforms2 Form" block available in Gutenberg editor with dropdown selection of all forms
+* feature:  Server-side rendering ensures forms display correctly in frontend
+* other:    Updated version numbering to reflect major improvements
 
 = 15.0.8 =
 
